@@ -6,7 +6,12 @@ const AboutSection = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("opacity-100", "translate-y-0", "translate-x-0")),
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.remove("opacity-0", "-translate-x-10", "translate-x-10", "translate-y-10");
+          e.target.classList.add("opacity-100", "translate-x-0", "translate-y-0");
+        }
+      }),
       { threshold: 0.15 }
     );
     sectionRef.current?.querySelectorAll(".reveal-item").forEach((el) => observer.observe(el));
@@ -19,9 +24,9 @@ const AboutSection = () => {
         WOLF
       </span>
       <div className="grid md:grid-cols-2 gap-20 items-center relative">
-        <div className="reveal-item opacity-0 -translate-x-10 transition-all duration-700 relative">
-          <div className="aspect-[3/4] overflow-hidden relative">
-            <img src={sidei} alt="Team Wolf Coach" className="w-full h-full object-cover brightness-[0.85] contrast-[1.1] hover:scale-[1.04] transition-transform duration-500" />
+        <div className="reveal-item opacity-0 -translate-x-10 transition-all duration-700 relative mt-8 md:mt-0">
+          <div className="aspect-[4/5] md:aspect-[3/4] overflow-hidden relative">
+            <img src={sidei} alt="Team Wolf Coach" className="w-full h-full object-cover object-top md:object-center brightness-[0.85] contrast-[1.1] hover:scale-[1.04] transition-transform duration-500" />
             <div className="absolute inset-0 border border-primary/30 pointer-events-none" />
           </div>
           <div className="absolute -bottom-5 -right-5 w-[60%] h-[60%] border border-primary/20 pointer-events-none -z-10" />

@@ -12,10 +12,10 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-[120px] px-6 md:px-[60px] pb-20 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-start md:flex-row md:justify-start items-start md:items-center pt-[120px] md:pt-[120px] px-6 md:px-[60px] pb-20 overflow-hidden">
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-cover bg-[center_20%] md:bg-[80%_20%] scale-105 transition-transform duration-[8s] ease-out brightness-[0.35]"
+        className="absolute inset-0 bg-cover bg-[60%_top] md:bg-[80%_20%] scale-105 transition-transform duration-[8s] ease-out brightness-[0.45] md:brightness-[0.35]"
         style={{ backgroundImage: `url(${heroImg})` }}
       />
       <div className="absolute inset-0" style={{

@@ -22,7 +22,12 @@ const TransformationsSection = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("opacity-100", "translate-y-0")),
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.remove("opacity-0", "-translate-x-10", "translate-x-10", "translate-y-10");
+          e.target.classList.add("opacity-100", "translate-x-0", "translate-y-0");
+        }
+      }),
       { threshold: 0.1 }
     );
     sectionRef.current?.querySelectorAll(".reveal-item").forEach((el) => observer.observe(el));
@@ -51,9 +56,9 @@ const TransformationsSection = () => {
             className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
             style={{ opacity: activeIndex === i ? 1 : 0 }}
           >
-            <img src={t.img} alt={t.tag} className="w-full h-full object-contain p-4 md:p-8" />
+            <img src={t.img} alt={t.tag} className="w-full h-full object-contain p-4 pb-20 md:p-8 md:pb-8" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 z-10">
+            <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 z-10 bg-black/40 md:bg-transparent p-2 md:p-0 rounded">
               <p className="font-barlow-condensed text-[11px] tracking-[0.25em] uppercase text-primary mb-2 drop-shadow-md">{t.tag}</p>
               <p className="font-bebas text-2xl md:text-5xl tracking-[0.05em] drop-shadow-md">{t.name}</p>
             </div>
@@ -82,9 +87,9 @@ const TransformationsSection = () => {
             className={`relative aspect-[4/3] md:aspect-video overflow-hidden transition-all duration-500 bg-[#111] ${activeIndex === i ? "ring-2 ring-primary" : "opacity-60 hover:opacity-100"
               }`}
           >
-            <img src={t.img} alt={t.tag} className="w-full h-full object-contain p-2" />
+            <img src={t.img} alt={t.tag} className="w-full h-full object-contain p-2 pb-7 md:p-2 md:pb-2" />
             <div className="absolute inset-0 bg-background/20" />
-            <p className="absolute bottom-2 left-3 font-barlow-condensed text-xs tracking-[0.15em] uppercase text-foreground/80 drop-shadow-md">{t.tag}</p>
+            <p className="absolute bottom-1 left-2 font-barlow-condensed text-[10px] md:text-xs tracking-[0.15em] uppercase text-primary md:text-foreground/80 drop-shadow-md bg-black/60 md:bg-transparent px-1 md:px-0 rounded">{t.tag}</p>
           </button>
         ))}
       </div>

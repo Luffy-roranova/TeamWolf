@@ -37,7 +37,12 @@ const CompetitionSection = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("opacity-100", "translate-y-0", "translate-x-0")),
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.remove("opacity-0", "-translate-x-10", "translate-x-10", "translate-y-10");
+          e.target.classList.add("opacity-100", "translate-x-0", "translate-y-0");
+        }
+      }),
       { threshold: 0.15 }
     );
     sectionRef.current?.querySelectorAll(".reveal-item").forEach((el) => observer.observe(el));
@@ -65,9 +70,9 @@ const CompetitionSection = () => {
             ))}
           </div>
         </div>
-        <div className="reveal-item opacity-0 translate-x-10 transition-all duration-700 delay-200 relative overflow-hidden">
+        <div className="reveal-item opacity-0 translate-x-10 transition-all duration-700 delay-200 relative overflow-hidden mt-8 md:mt-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-transparent z-10 pointer-events-none" />
-          <img src={i2} alt="Competition" className="w-full object-cover brightness-[0.8] contrast-[1.15] hover:scale-[1.03] transition-transform duration-500" />
+          <img src={i2} alt="Competition" className="w-full aspect-[4/5] md:aspect-auto object-cover object-top md:object-center brightness-[0.8] contrast-[1.15] hover:scale-[1.03] transition-transform duration-500" />
         </div>
       </div>
     </section>
